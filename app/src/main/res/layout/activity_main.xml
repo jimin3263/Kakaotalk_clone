@@ -1,78 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity"
     android:weightSum="10">
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/main_frame"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomBar"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="1.5">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="친구"
-            android:textSize="25dp"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="200dp"
-            android:layout_marginLeft="10dp"/>
-
-        <ImageButton
-            android:id="@+id/iv_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="#00FFFFFF"
-            android:src="@android:drawable/ic_menu_search" />
-
-        <ImageButton
-            android:id="@+id/iv_friend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#00FFFFFF"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:src="@android:drawable/ic_menu_myplaces" />
-
-        <ImageButton
-            android:id="@+id/iv_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#00FFFFFF"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:src="@android:drawable/ic_menu_manage" />
-
-    </LinearLayout>
-
-    <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#E6E5E5"/>
-    
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/iv_recycle"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbarFadeDuration="0"
-        android:scrollbarSize="5dp"
-        android:scrollbarStyle="outsideInset"
-        android:scrollbars="vertical"
-        android:layout_weight="8.5">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_menu"
+        android:background="#FFFFFF"
+        app:itemIconTint="#C6C6C6"
 
-    </androidx.recyclerview.widget.RecyclerView>
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconSize="25dp"
+        />
 
-</LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
