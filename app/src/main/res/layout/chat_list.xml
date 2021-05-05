@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<LinearLayout android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <androidx.cardview.widget.CardView android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="#FFFFFF">
+
+
+        <LinearLayout android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <ImageView android:layout_height="80dp"
+                android:layout_width="80dp"
+                tools:srcCompat="@tools:sample/avatars"
+                android:id="@+id/chatPicture"/>
+
+
+            <LinearLayout android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_margin="5dp">
+
+                <TextView android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:id="@+id/chatName"
+                    android:textSize="30sp"
+                    android:textColor="#000000"
+                    android:text="가나다라"/>
+
+                <TextView android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:id="@+id/recentChat"
+                    android:textSize="24sp"
+                    android:textColor="#0000FF"
+                    android:text="아자차카"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

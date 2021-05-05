@@ -1,11 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <TextView
+
+<LinearLayout android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    -<LinearLayout android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:visibility="visible"
+    android:layout_weight="1"
+    android:id="@+id/iv_layout">
+
+    <TextView android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="200dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:text="채팅창"/>
+
+    <ImageButton
         android:layout_height="wrap_content"
-        android:text="2번 화면입니다"/>
+        android:layout_width="wrap_content"
+        android:id="@+id/iv_search"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:src="@android:drawable/ic_menu_search"
+        android:background="#00FFFFFF"/>
+
+    <ImageButton android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/iv_friend"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:src="@android:drawable/sym_action_chat"
+        android:background="#00FFFFFF"/>
+
+    <ImageButton android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/iv_setting"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:src="@android:drawable/ic_menu_manage"
+        android:background="#00FFFFFF"/>
+
+
+</LinearLayout>
+
+    <View android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:id="@+id/iv_view"
+        android:background="#E6E5E5"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/iv_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:scrollbarFadeDuration="0"
+        android:scrollbarSize="5dp"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>
