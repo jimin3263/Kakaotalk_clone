@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1035258449605",
+    "firebase_url": "https://talk-8aece-default-rtdb.firebaseio.com",
+    "project_id": "talk-8aece",
+    "storage_bucket": "talk-8aece.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035258449605:android:fa15c6f07c6747558c2aac",
+        "android_client_info": {
+          "package_name": "com.example.recycler_kakaotalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035258449605-21cj748do4o2tmatuuiiqu4ucf421odv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSo6JWX-t_ymcXMF-i3Z_sj7-mCRKouUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035258449605-21cj748do4o2tmatuuiiqu4ucf421odv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

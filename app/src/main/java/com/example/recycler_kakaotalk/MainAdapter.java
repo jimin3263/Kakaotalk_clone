@@ -14,11 +14,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHolder> {
 
     private ArrayList<MainData> list;
+
     public MainAdapter(ArrayList<MainData> list){
         this.list = list;
     }
@@ -34,10 +37,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        holder.iv_profile.setImageResource(list.get(position).getIv_profile());
+        Glide.with(holder.itemView)
+                .load(list.get(position).getIv_profile())
+                .into(holder.iv_profile);
+
         holder.iv_name.setText(list.get(position).getIv_name());
         holder.iv_message.setText(list.get(position).getIv_message());
-
+/*
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +53,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
                 v.getContext().startActivity(intent);
             }
         });
-
+*/
     }
 
     @Override
@@ -65,12 +71,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.iv_profile = (ImageView)itemView.findViewById(R.id.iv_profile);
-            this.iv_profile.setBackground(new ShapeDrawable(new OvalShape()));
-            this.iv_profile.setClipToOutline(true);
-
-            this.iv_name = (TextView)itemView.findViewById(R.id.iv_name);
-            this.iv_message = (TextView)itemView.findViewById(R.id.iv_message);
+            this.iv_profile = itemView.findViewById(R.id.iv_profile);
+            this.iv_name = itemView.findViewById(R.id.iv_name);
+            this.iv_message = itemView.findViewById(R.id.iv_message);
         }
     }
 

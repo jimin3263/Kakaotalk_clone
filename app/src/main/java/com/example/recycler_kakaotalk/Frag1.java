@@ -1,6 +1,7 @@
 package com.example.recycler_kakaotalk;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class Frag1 extends Fragment {
@@ -20,14 +27,18 @@ public class Frag1 extends Fragment {
     private ArrayList<MainData> dataList;
     private LinearLayoutManager linearLayoutManager;
     private View v;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.frag1, container, false);
-        recyclerView = (RecyclerView)v.findViewById(R.id.iv_recycle);
-        mainAdapter = new MainAdapter(dataList);
 
+        recyclerView = v.findViewById(R.id.iv_recycle);
+        recyclerView.setHasFixedSize(true);
+
+        mainAdapter = new MainAdapter(dataList);
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mainAdapter);
@@ -40,19 +51,32 @@ public class Frag1 extends Fragment {
         super.onCreate(savedInstanceState);
 
         dataList = new ArrayList<>();
-        dataList.add(new MainData(R.mipmap.ic_launcher, "Profile1", "hello this is kakaotalk1"));
-        dataList.add(new MainData(R.mipmap.ic_launcher, "Profile2", "hello this is kakaotalk2"));
-        dataList.add(new MainData(R.mipmap.ic_launcher, "Profile3", "hello this is kakaotalk3"));
-        dataList.add(new MainData(R.mipmap.ic_launcher, "Profile4", "hello this is kakaotalk4"));
-        dataList.add(new MainData(R.mipmap.ic_launcher, "Profile5", "hello this is kakaotalk5"));
-        dataList.add(new MainData(R.mipmap.ic_launcher, "Profile6", "hello this is kakaotalk6"));
-        dataList.add(new MainData(R.mipmap.ic_launcher, "Profile7", "hello this is kakaotalk7"));
-        dataList.add(new MainData(R.mipmap.ic_launcher, "Profile8", "hello this is kakaotalk8"));
-        dataList.add(new MainData(R.mipmap.ic_launcher, "Profile9", "hello this is kakaotalk9"));
-        dataList.add(new MainData(R.mipmap.ic_launcher, "Profile10", "hello this is kakaotalk10"));
-        dataList.add(new MainData(R.mipmap.ic_launcher, "Profile11", "hello this is kakaotalk11"));
-        dataList.add(new MainData(R.mipmap.ic_launcher, "Profile12", "hello this is kakaotalk12"));
-        dataList.add(new MainData(R.mipmap.ic_launcher, "Profile13", "hello this is kakaotalk13"));
+
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("Person");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //firebase 데이터 받아옴
+                dataList.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    MainData mainData = snapshot.getValue(MainData.class);
+                    dataList.add(mainData);
+                }
+
+                //리스트 새로고침
+                mainAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                //데이터베이스 가져오면서 에러 발생시 로그
+                Log.e("Person_list",String.valueOf(error.toException()));
+
+            }
+        });
+
 
     }
 }
