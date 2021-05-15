@@ -38,6 +38,7 @@
             android:inputType="textPassword" />
 
         <Button
+            android:id="@+id/signin_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -45,6 +46,7 @@
             android:layout_marginRight="20dp"
             android:text="Signin" />
         <Button
+            android:id="@+id/signup_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
