@@ -8,13 +8,13 @@
     <TextView
         android:textSize="14sp"
         android:text="상대방 채팅"
-        android:id="@+id/TextView_nickname"
+        android:id="@+id/chat_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
         android:textSize="20sp"
         android:text="나의 채팅"
-        android:id="@+id/TextView_msg"
+        android:id="@+id/chat_msg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>
