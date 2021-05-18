@@ -6,7 +6,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.recycler_kakaotalk.navigation.Frag1;
 import com.example.recycler_kakaotalk.navigation.Frag2;
@@ -26,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /* tool bar */
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        /* bottom navigation*/
         bottomNavigationView=findViewById(R.id.bottomBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -51,23 +58,33 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
     private void setFrag(int n) {
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         switch (n) {
             case 0:
                 ft.replace(R.id.main_frame, frag1);
+                getSupportActionBar().setTitle("친구");
                 ft.commit();
                 break;
             case 1:
                 ft.replace(R.id.main_frame, frag2);
+                getSupportActionBar().setTitle("채팅");
                 ft.commit();
                 break;
             case 2:
                 ft.replace(R.id.main_frame, frag3);
+                getSupportActionBar().setTitle("설정");
                 ft.commit();
                 break;
 
         }
     }
+
 }

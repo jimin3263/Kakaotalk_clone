@@ -8,14 +8,31 @@
     tools:context=".MainActivity"
     android:weightSum="10">
 
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        app:title="제목"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FFFFFF"
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconTint="#C6C6C6"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+
     <FrameLayout
         android:id="@+id/main_frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintBottom_toTopOf="@+id/bottomBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+       >
 
     </FrameLayout>
 
@@ -29,7 +46,6 @@
         app:menu="@menu/bottom_menu"
         android:background="#FFFFFF"
         app:itemIconTint="#C6C6C6"
-
         app:labelVisibilityMode="unlabeled"
         app:itemIconSize="25dp"
         />

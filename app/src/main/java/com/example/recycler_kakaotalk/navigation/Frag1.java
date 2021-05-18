@@ -1,10 +1,12 @@
 package com.example.recycler_kakaotalk.navigation;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.recycler_kakaotalk.MainActivity;
 import com.example.recycler_kakaotalk.data.MainData;
 import com.example.recycler_kakaotalk.R;
 import com.example.recycler_kakaotalk.adapters.MainAdapter;
@@ -45,6 +48,8 @@ public class Frag1 extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mainAdapter);
+
+
 
         return v;
     }

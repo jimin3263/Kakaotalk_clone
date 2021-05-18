@@ -7,57 +7,6 @@
     android:orientation="vertical"
     >
 
-    <LinearLayout
-        android:id="@+id/iv_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="#FFFFFF"
-        android:orientation="horizontal"
-        android:visibility="visible">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="215dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:text="친구"
-            android:textAlignment="center"
-            android:textSize="25dp" />
-
-        <ImageButton
-            android:id="@+id/iv_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
-            android:background="#00FFFFFF"
-            android:src="@android:drawable/ic_menu_search" />
-
-        <ImageButton
-            android:id="@+id/iv_friend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
-            android:background="#00FFFFFF"
-            android:src="@android:drawable/ic_menu_myplaces" />
-
-        <ImageButton
-            android:id="@+id/iv_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:background="#00FFFFFF"
-            android:src="@android:drawable/ic_menu_manage" />
-
-    </LinearLayout>
 
     <View
         android:id="@+id/iv_view"
