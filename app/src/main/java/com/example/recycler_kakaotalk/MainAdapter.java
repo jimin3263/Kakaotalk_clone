@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -21,10 +22,10 @@ import java.util.ArrayList;
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHolder> {
 
     private ArrayList<MainData> list;
-
     public MainAdapter(ArrayList<MainData> list){
         this.list = list;
     }
+    public static final int REQUEST_CODE = 101;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @NonNull
@@ -36,24 +37,28 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CustomViewHolder holder, final int position) {
         Glide.with(holder.itemView)
                 .load(list.get(position).getIv_profile())
+                .circleCrop()
                 .into(holder.iv_profile);
 
         holder.iv_name.setText(list.get(position).getIv_name());
         holder.iv_message.setText(list.get(position).getIv_message());
-/*
+
+        //여기서 다음 장면으로 넘어가기
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //프래그먼트로 인텐트 이용해서 이동하는거 구현
-                Intent intent = new Intent(v.getContext(), Fragment1.class);
-                intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent intent = new Intent(v.getContext(), ProfileActivity.class);
+                intent.putExtra( "message" , list.get(position).getIv_message());
+                intent.putExtra( "name" ,list.get(position).getIv_name());
+                intent.putExtra( "uri", list.get(position).getIv_profile());
+
                 v.getContext().startActivity(intent);
             }
         });
-*/
+
     }
 
     @Override

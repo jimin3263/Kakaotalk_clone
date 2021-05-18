@@ -1,5 +1,6 @@
 package com.example.recycler_kakaotalk;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -73,10 +74,8 @@ public class Frag1 extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
                 //데이터베이스 가져오면서 에러 발생시 로그
                 Log.e("Person_list",String.valueOf(error.toException()));
-
             }
         });
-
-
     }
+
 }

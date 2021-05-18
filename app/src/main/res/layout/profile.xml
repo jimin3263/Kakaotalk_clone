@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="0.3">
+
+        <ImageButton
+            android:id="@+id/iv_back_profile"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="bottom"
+            android:background="#00FFFFFF"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"/>
+
+        <ImageButton
+            android:id="@+id/iv_setting_profile"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="300dp"
+            android:background="#00FFFFFF"
+            android:src="@android:drawable/ic_menu_manage"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="4.0"
+        android:layout_gravity="center"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="20dp"
+            >
+
+            <ImageButton
+                android:id="@+id/iv_profile2"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="bottom"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:background="@drawable/back_layout"/>
+
+            <TextView
+                android:id="@+id/iv_name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="강세미"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/iv_message2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:text="뇽안하세요"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#B5B3B3"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="100dp"
+            >
+
+            <ImageButton
+                android:id="@+id/iv_message_profile"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginRight="100dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@android:drawable/ic_menu_send"
+                android:background="#00FFFFFF"/>
+
+            <ImageButton
+                android:id="@+id/iv_edit_profile"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@android:drawable/ic_menu_edit"
+                android:background="#00FFFFFF"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
