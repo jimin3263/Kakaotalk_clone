@@ -1,4 +1,4 @@
-package com.example.recycler_kakaotalk;
+package com.example.recycler_kakaotalk.adapters;
 
 import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
@@ -12,7 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.recycler_kakaotalk.Frag2;
+import com.example.recycler_kakaotalk.navigation.Frag2;
+import com.example.recycler_kakaotalk.data.Person;
 import com.example.recycler_kakaotalk.R;
 
 import java.util.ArrayList;

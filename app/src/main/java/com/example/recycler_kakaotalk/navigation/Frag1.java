@@ -1,6 +1,5 @@
-package com.example.recycler_kakaotalk;
+package com.example.recycler_kakaotalk.navigation;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.recycler_kakaotalk.data.MainData;
+import com.example.recycler_kakaotalk.R;
+import com.example.recycler_kakaotalk.adapters.MainAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

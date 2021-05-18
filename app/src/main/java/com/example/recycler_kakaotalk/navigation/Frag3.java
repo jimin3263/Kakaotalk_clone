@@ -1,4 +1,4 @@
-package com.example.recycler_kakaotalk;
+package com.example.recycler_kakaotalk.navigation;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.recycler_kakaotalk.R;
 
 public class Frag3 extends Fragment {
     private View view;

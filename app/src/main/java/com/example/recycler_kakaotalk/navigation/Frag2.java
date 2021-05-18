@@ -1,4 +1,4 @@
-package com.example.recycler_kakaotalk;
+package com.example.recycler_kakaotalk.navigation;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.recycler_kakaotalk.PersonAdapter;
+import com.example.recycler_kakaotalk.data.Person;
+import com.example.recycler_kakaotalk.R;
+import com.example.recycler_kakaotalk.adapters.PersonAdapter;
 
 import java.util.ArrayList;
 //import org.techtown.kakaobottombar.R;

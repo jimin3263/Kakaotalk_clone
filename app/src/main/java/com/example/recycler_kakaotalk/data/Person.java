@@ -1,4 +1,4 @@
-package com.example.recycler_kakaotalk;
+package com.example.recycler_kakaotalk.data;
 
 public class Person {
     int picture;
