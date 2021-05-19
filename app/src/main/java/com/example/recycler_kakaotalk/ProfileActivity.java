@@ -7,6 +7,7 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,8 +19,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class ProfileActivity extends AppCompatActivity {
-    private ImageButton imageButton, backButton, setting, message, edit;
+    private ImageButton imageButton, message, edit;
     private TextView textView, textView1;
+    private ImageView btn_back, setting;
     private static final String TAG = "ProfileActivity";
 
     @Override
@@ -33,18 +35,15 @@ public class ProfileActivity extends AppCompatActivity {
         edit = findViewById(R.id.iv_edit_profile);
         message = findViewById(R.id.iv_message_profile);
 
-        backButton = findViewById(R.id.iv_back_profile);
-        setting = findViewById(R.id.iv_setting_profile);
         //버튼 클릭시 되돌아가기 => frag1.java, 프로필 이런거 바꾸면 데이터 들고가서 다시 수정
-        /*
-        backButton.setOnClickListener(new View.OnClickListener() {
+        btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-
+            public void onClick(View v) {
+                finish();
             }
         });
-*/
+
         Intent profile_intent = getIntent();
         try{
             if(profile_intent.hasExtra("message") && profile_intent.hasExtra("name")
