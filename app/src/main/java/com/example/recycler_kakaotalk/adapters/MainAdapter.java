@@ -66,6 +66,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
         return (null != list ? list.size() : 0);
     }
 
+
     public class CustomViewHolder extends RecyclerView.ViewHolder{
 
         protected ImageView iv_profile;
@@ -81,6 +82,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
             this.iv_message = itemView.findViewById(R.id.iv_message);
         }
     }
+
+
 
 }
 
