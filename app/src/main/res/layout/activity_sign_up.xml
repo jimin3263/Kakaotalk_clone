@@ -23,11 +23,20 @@
         android:padding="10dp">
 
         <EditText
+            android:id="@+id/Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="이름" />
+
+        <EditText
             android:id="@+id/Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="이메일"
+            android:layout_marginTop="10dp"
             android:inputType="textEmailAddress" />
 
         <EditText
