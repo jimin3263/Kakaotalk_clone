@@ -69,6 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
                                     MainData mainData = new MainData();
                                     mainData.setIv_name(name);
                                     mainData.setIv_profile("https://firebasestorage.googleapis.com/v0/b/talk-8aece.appspot.com/o/pngegg.png?alt=media&token=05e37d54-f16b-4fbb-8955-eb27a209c5e6");
+                                    mainData.setIv_message("");
 
                                     String uid = task.getResult().getUser().getUid();
                                     FirebaseDatabase.getInstance().getReference().child("Person").child(uid).setValue(mainData);

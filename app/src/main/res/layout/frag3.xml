@@ -16,7 +16,7 @@
             android:maxHeight="200dp"
             android:maxWidth="200dp"
             android:adjustViewBounds="true"
-            android:src="@mipmap/ic_profile"
+            android:src="@drawable/profile_image"
             android:layout_gravity="center"/>
 
         <LinearLayout
