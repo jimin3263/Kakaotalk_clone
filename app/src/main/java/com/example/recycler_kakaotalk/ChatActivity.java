@@ -1,6 +1,7 @@
 package com.example.recycler_kakaotalk;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,18 +47,24 @@ public class ChatActivity extends AppCompatActivity {
         Button_send = findViewById(R.id.Button_send);
         EditText_chat = findViewById(R.id.EditText_chat);
 
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        myRef = database.getReference().child("Chat");
+
         Button_send.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 String msg = EditText_chat.getText().toString();
+                Log.d("chat",msg);
 
                 if(msg != null){
                     ChatData chat = new ChatData();
                     chat.setChat_name(name);
                     chat.setChat_message(msg);
-                    myRef.push().setValue(chat);
+                    myRef.setValue(chat);
                 }
             }
         });
+
 
         mRecyclerView = findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -69,19 +76,22 @@ public class ChatActivity extends AppCompatActivity {
 
         mRecyclerView.setAdapter(mAdapter);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference();
 
+        /*
         ChatData chat = new ChatData();
         chat.setChat_name(name);
         chat.setChat_message("hi");
         myRef.setValue(chat);
 
+         */
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-                ChatData chat = dataSnapshot.getValue(ChatData.class);   // DTO class로 감
-                ((ChatAdapter) mAdapter).addChat(chat);
+
+                /* 여기 수정해야해 !!!!!*/
+
+                //ChatData chat = dataSnapshot.getValue(ChatData.class);   // DTO class로 감
+               // ((ChatAdapter) mAdapter).addChat(chat);
             }
 
             @Override

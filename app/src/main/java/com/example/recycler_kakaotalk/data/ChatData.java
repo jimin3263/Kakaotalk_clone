@@ -19,7 +19,7 @@ public class ChatData implements Serializable {
         return chat_name;
     }
 
-    public void setChat_name(String iv_name) {
+    public void setChat_name(String chat_name) {
         this.chat_name = chat_name;
     }
 
@@ -27,7 +27,7 @@ public class ChatData implements Serializable {
         return chat_message;
     }
 
-    public void setChat_message(String iv_message) {
+    public void setChat_message(String chat_message) {
         this.chat_message = chat_message;
     }
 
