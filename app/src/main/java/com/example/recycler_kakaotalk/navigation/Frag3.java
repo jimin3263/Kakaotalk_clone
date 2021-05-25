@@ -1,7 +1,10 @@
 package com.example.recycler_kakaotalk.navigation;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +32,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import static android.app.Activity.RESULT_CANCELED;
 
 public class Frag3 extends Fragment {
     public static final int PICK_PROFILE_IMAGE = 10 ;
@@ -89,7 +94,6 @@ public class Frag3 extends Fragment {
 
     }
 
-
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -97,7 +101,8 @@ public class Frag3 extends Fragment {
                 case R.id.iv_profile:
                     //프로필 사진 설정
                     Intent photoIntent = new Intent(Intent.ACTION_PICK);
-                    photoIntent.setType("image/*");
+                    //photoIntent.setType("image/*");
+                    photoIntent.setType(MediaStore.Images.Media.CONTENT_TYPE);
                     startActivityForResult(photoIntent,PICK_PROFILE_IMAGE);
                     break;
                 case R.id.edit_name:
@@ -123,29 +128,30 @@ public class Frag3 extends Fragment {
             }
         }
     };
-
-
-
     /*
-    public void getProfileImage(){
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                MainData mainData = snapshot.getValue(MainData.class);
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-                String image = mainData.getIv_profile();
-                Glide.with(getActivity()).load(image).circleCrop().into(profileImage);
+        if (requestCode == Frag3.PICK_PROFILE_IMAGE && resultCode == Activity.RESULT_OK) {
+            try{
+
+                //MainData mainData = new MainData();
+                //mainData.setIv_profile(data.getData().toString()); //
+                Uri imageURI = data.getData();
+
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                databaseReference = database.getReference().child("Person").child(uid);
+                databaseReference.child("iv_profile").setValue(imageURI.toString());
+
+            }catch(Exception e){
+
             }
+        }else if(resultCode == RESULT_CANCELED){  //취소시 호출할 행동 입력
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("My profile",String.valueOf(error.toException()));
-            }
-
-        });
-
+        }
     }
+    */
 
-     */
 
 }

@@ -4,7 +4,7 @@ public class MainData {
     private String iv_profile;
     private String iv_name;
     private String iv_message;
-    private int view_type;
+    //private int view_type;
 
     public MainData(){ }
 
@@ -23,7 +23,7 @@ public class MainData {
     public void setIv_name(String iv_name) {
         this.iv_name = iv_name;
     }
-
+    /*
     public int getView_type() {
         return view_type;
     }
@@ -31,7 +31,7 @@ public class MainData {
     public void setView_type(int view_type) {
         this.view_type = view_type;
     }
-
+*/
     public String getIv_message() {
         return iv_message;
     }

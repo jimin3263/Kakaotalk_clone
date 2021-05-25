@@ -49,8 +49,6 @@ public class Frag1 extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mainAdapter);
 
-
-
         return v;
     }
 

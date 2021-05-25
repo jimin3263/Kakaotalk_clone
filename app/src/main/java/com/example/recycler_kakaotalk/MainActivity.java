@@ -37,10 +37,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
 import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -52,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private FragmentTransaction ft;
+    private FirebaseDatabase database;
     private Frag1 frag1;
     private Frag2 frag2;
     private Frag3 frag3;
@@ -88,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         frag3 = new Frag3();
         setFrag(0); //첫 프래그먼트 화면을 무엇으로 지정해줄 것인지 선택.
 
-
     }
 
     @Override
@@ -120,24 +116,28 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == Frag3.PICK_PROFILE_IMAGE && resultCode == Activity.RESULT_OK) {
-            //사진 업로드 개빡치네
-            /*
-            Uri imageURI = data.getData();
-            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            DatabaseReference mdatabase = FirebaseDatabase.getInstance().getReference();
-             */
+            try{
+                //MainData mainData = new MainData();
+                //mainData.setIv_profile(data.getData().toString()); //
+                Uri imageURI = data.getData();
+
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DatabaseReference databaseReference = database.getReference().child("Person").child(uid);
+                databaseReference.child("iv_profile").setValue(imageURI.toString());
+
+            }catch(Exception e){
+
+            }
+        }else if(resultCode == RESULT_CANCELED){  //취소시 호출할 행동 입력
 
         }
-
-
     }
+
 
 }
 
