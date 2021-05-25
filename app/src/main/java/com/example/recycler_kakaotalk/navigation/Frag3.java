@@ -37,7 +37,7 @@ public class Frag3 extends Fragment {
     private DatabaseReference databaseReference;
 
     private ImageView profileImage;
-    private Button logout;
+    private Button logout, resign;
     private TextView name, message;
 
     @Nullable
@@ -50,6 +50,7 @@ public class Frag3 extends Fragment {
         name = view.findViewById(R.id.iv_name);
         message= view.findViewById(R.id.iv_message);
         logout = view.findViewById(R.id.button_logout);
+        resign = view.findViewById(R.id.button_resign);
 
         profileImage.setOnClickListener(onClickListener);
         logout.setOnClickListener(onClickListener);
@@ -61,9 +62,9 @@ public class Frag3 extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid(); //현재 로그인한 사용자 가져오기
         database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference().child("Person").child(uid);
+        databaseReference = database.getReference().child("Person").child(uid); //Person, 해당 uid 에 맞는 참조 가져오기(데이터)
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -83,6 +84,7 @@ public class Frag3 extends Fragment {
 
     }
 
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -101,9 +103,14 @@ public class Frag3 extends Fragment {
                     break;
                 case R.id.button_logout:
                     auth.signOut();
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    startActivity(intent);
+                    Intent intent1 = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent1);
                     break;
+                case R.id.button_resign:
+                    auth.getCurrentUser().delete();
+                    Intent intent2 = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent2);
+
             }
         }
     };

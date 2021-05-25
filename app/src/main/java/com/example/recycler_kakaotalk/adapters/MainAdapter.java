@@ -33,7 +33,16 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
     public MainAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
+        //여기서 view Type 들어오는 걸로 다른 xml 생성하기
         return holder;
+    }
+
+    //지금 문제는 데이터를 추가할때 data.add("view type")이렇게 안하고 파이어베이스에서 어떻게 구분해서 설정하느냐..
+    //내 프로필만 뷰타입 0, 나머지 프로필들은 1 이렇게 구분 필요
+    //현재 로그인한 사용자가 누군지를 알수 있다. 그러면?
+    @Override
+    public int getItemViewType(int position) { //뷰 선정
+        return super.getItemViewType(position);
     }
 
     @Override

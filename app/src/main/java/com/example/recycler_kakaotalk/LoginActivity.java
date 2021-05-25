@@ -5,18 +5,23 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.recycler_kakaotalk.data.MainData;
 import com.example.recycler_kakaotalk.navigation.Frag1;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,10 +30,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private GoogleApiClient googleApiClient;
+    private GoogleSignInClient mGoogleSignInClient;
     private static final int REQ_SIGN_GOOGLE = 100; //구글 로그인 결과 코드
     private static final String TAG = "LoginActivity";
 
@@ -53,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                 .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
                 .build();
 
+        //mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
         mAuth = FirebaseAuth.getInstance();
 
         findViewById(R.id.signup_button).setOnClickListener(onClickListener);
@@ -129,14 +138,66 @@ public class LoginActivity extends AppCompatActivity {
 
         //로그인 인증
         if(requestCode == REQ_SIGN_GOOGLE){
+            // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try{
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                Log.d(TAG, "firebaseAuthWithGoogle: " + account.getId());
+                firebaseAuthWithGoogle(account.getIdToken());
+            } catch (ApiException e) {
+                Log.w(TAG, "Google Sign in failed", e);
+            }
+            /*
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if(result.isSuccess()){
                 GoogleSignInAccount account = result.getSignInAccount();
                 resultLogin(account); //로그인 결과값을 출력
             }
+             */
+        }
+    }
+    //고유하게 식별하는 해당 ID 토큰
+    private void firebaseAuthWithGoogle(String idToken) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){ //로그인 성공
+                            Log.d(TAG, "signInWithGoogle:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        }else{
+                            Log.d(TAG, "signInWithGoogle:failure");
+                            updateUI(null);
+                        }
+                    }
+                });
+    }
+
+    private void updateUI(FirebaseUser user) {
+        if(user != null){
+            String uid = null;
+            MainData mainData = new MainData();
+
+            for(UserInfo profile : user.getProviderData()){
+                mainData.setIv_name(profile.getDisplayName());
+                mainData.setIv_message(" ");
+                mainData.setIv_profile(profile.getPhotoUrl().toString());
+
+                uid = profile.getUid();
+            }
+
+            FirebaseDatabase.getInstance().getReference().child("Person").child(uid).setValue(mainData);
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 
+/*
     private void resultLogin(GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
 
@@ -146,7 +207,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){ //로그인 성공
                             Log.d(TAG, "signInWithGoogle:success");
-                            Intent intent = new Intent(getApplicationContext(), Frag1.class);
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
                         }else{
                             Log.d(TAG, "signInWithGoogle:failure");
@@ -154,5 +216,5 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-
+*/
 }
