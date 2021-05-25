@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.recycler_kakaotalk.ChatActivity;
 import com.example.recycler_kakaotalk.navigation.Frag2;
 import com.example.recycler_kakaotalk.data.Person;
 import com.example.recycler_kakaotalk.R;
@@ -58,7 +59,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 //프래그먼트로 인텐트 이용해서 이동하는거 구현
-                Intent intent = new Intent(v.getContext(), Frag2.class);
+                Intent intent = new Intent(v.getContext(), ChatActivity.class);
                 intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                 v.getContext().startActivity(intent);
             }

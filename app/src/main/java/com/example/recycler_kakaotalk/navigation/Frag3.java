@@ -128,7 +128,7 @@ public class Frag3 extends Fragment {
             }
         }
     };
-    /*
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -136,8 +136,6 @@ public class Frag3 extends Fragment {
         if (requestCode == Frag3.PICK_PROFILE_IMAGE && resultCode == Activity.RESULT_OK) {
             try{
 
-                //MainData mainData = new MainData();
-                //mainData.setIv_profile(data.getData().toString()); //
                 Uri imageURI = data.getData();
 
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -151,7 +149,6 @@ public class Frag3 extends Fragment {
 
         }
     }
-    */
 
 
 }

@@ -116,27 +116,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == Frag3.PICK_PROFILE_IMAGE && resultCode == Activity.RESULT_OK) {
-            try{
-                //MainData mainData = new MainData();
-                //mainData.setIv_profile(data.getData().toString()); //
-                Uri imageURI = data.getData();
-
-                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                DatabaseReference databaseReference = database.getReference().child("Person").child(uid);
-                databaseReference.child("iv_profile").setValue(imageURI.toString());
-
-            }catch(Exception e){
-
-            }
-        }else if(resultCode == RESULT_CANCELED){  //취소시 호출할 행동 입력
-
-        }
-    }
 
 
 }
