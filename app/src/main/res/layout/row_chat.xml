@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <TextView
-        android:textSize="14sp"
-        android:text="상대방 채팅"
-        android:id="@+id/chat_nickname"
+        android:id="@+id/chat_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="상대방 채팅"
+        android:textSize="14sp" />
+
     <TextView
         android:textSize="20sp"
         android:text="나의 채팅"
