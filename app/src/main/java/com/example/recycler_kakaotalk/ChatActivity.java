@@ -1,5 +1,6 @@
 package com.example.recycler_kakaotalk;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,22 +35,33 @@ public class ChatActivity extends AppCompatActivity {
 
     private EditText EditText_chat;
     private Button Button_send;
+    private Button Button_plus;
     private DatabaseReference myRef;
 
     EditText etText;
-    Button btnSend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        Button_send = findViewById(R.id.Button_send);
+        Button_send = findViewById(R.id.btn_send);
         EditText_chat = findViewById(R.id.EditText_chat);
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference().child("Chat");
+
+
+        //+버튼 클릭
+        Button_plus = findViewById(R.id.btn_plus);
+        Button_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PhotoActivity.class);
+                startActivity(intent);
+            }
+        });
 
         Button_send.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -91,7 +103,7 @@ public class ChatActivity extends AppCompatActivity {
                 /* 여기 수정해야해 !!!!!*/
 
                 //ChatData chat = dataSnapshot.getValue(ChatData.class);   // DTO class로 감
-               // ((ChatAdapter) mAdapter).addChat(chat);
+                // ((ChatAdapter) mAdapter).addChat(chat);
             }
 
             @Override
