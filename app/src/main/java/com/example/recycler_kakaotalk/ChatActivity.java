@@ -60,7 +60,7 @@ public class ChatActivity extends AppCompatActivity {
                     ChatData chat = new ChatData();
                     chat.setChat_name(name);
                     chat.setChat_message(msg);
-                    myRef.setValue(chat);
+                    myRef.push().setValue(chat);
                 }
             }
         });

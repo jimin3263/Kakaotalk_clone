@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,8 +38,8 @@ public class Frag3 extends Fragment {
     private DatabaseReference databaseReference;
 
     private ImageView profileImage;
-    private Button logout, resign;
-    private TextView name, message;
+    private Button logout, resign, edit_name, edit_message;
+    private EditText name, message;
 
     @Nullable
     @Override
@@ -51,9 +52,13 @@ public class Frag3 extends Fragment {
         message= view.findViewById(R.id.iv_message);
         logout = view.findViewById(R.id.button_logout);
         resign = view.findViewById(R.id.button_resign);
+        edit_name = view.findViewById(R.id.edit_name);
+        edit_message = view.findViewById(R.id.edit_message);
 
         profileImage.setOnClickListener(onClickListener);
         logout.setOnClickListener(onClickListener);
+        edit_name.setOnClickListener(onClickListener);
+        edit_message.setOnClickListener(onClickListener);
 
         return view;
     }
@@ -61,6 +66,7 @@ public class Frag3 extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid(); //현재 로그인한 사용자 가져오기
         database = FirebaseDatabase.getInstance();
@@ -79,7 +85,6 @@ public class Frag3 extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.e("My profile",String.valueOf(error.toException()));
             }
-
         });
 
     }
@@ -95,18 +100,22 @@ public class Frag3 extends Fragment {
                     photoIntent.setType("image/*");
                     startActivityForResult(photoIntent,PICK_PROFILE_IMAGE);
                     break;
-                case R.id.iv_name:
+                case R.id.edit_name:
                     //이름 설정
+                    databaseReference.child("iv_name").setValue(name.getText().toString());
                     break;
-                case R.id.iv_message:
+                case R.id.edit_message:
                     //상메 설정
+                    databaseReference.child("iv_message").setValue(message.getText().toString());
                     break;
                 case R.id.button_logout:
+                    //로그아웃
                     auth.signOut();
                     Intent intent1 = new Intent(getActivity(), LoginActivity.class);
                     startActivity(intent1);
                     break;
                 case R.id.button_resign:
+                    //회원 탈퇴
                     auth.getCurrentUser().delete();
                     Intent intent2 = new Intent(getActivity(), LoginActivity.class);
                     startActivity(intent2);
@@ -114,5 +123,29 @@ public class Frag3 extends Fragment {
             }
         }
     };
+
+
+
+    /*
+    public void getProfileImage(){
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                MainData mainData = snapshot.getValue(MainData.class);
+
+                String image = mainData.getIv_profile();
+                Glide.with(getActivity()).load(image).circleCrop().into(profileImage);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("My profile",String.valueOf(error.toException()));
+            }
+
+        });
+
+    }
+
+     */
 
 }

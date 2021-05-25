@@ -27,32 +27,49 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TextView
+                android:layout_height="wrap_content">
+                <EditText
                     android:id="@+id/iv_name"
-                    android:layout_width="wrap_content"
+                    android:layout_weight="4"
                     android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
                     android:gravity="center_vertical"
                     android:text="이름"
                     android:textSize="30dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="10dp"/>
+                <Button
+                    android:id="@+id/edit_name"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="수정"/>
+
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TextView
+                android:layout_height="wrap_content">
+                <EditText
                     android:id="@+id/iv_message"
-                    android:layout_width="wrap_content"
+                    android:layout_weight="4"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="상태 메시지"
                     android:layout_marginLeft="10dp"
                     android:textSize="20dp"/>
+                <Button
+                    android:id="@+id/edit_message"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="수정"/>
+
             </LinearLayout>
         </LinearLayout>
+
         <Button
             android:id="@+id/button_logout"
             android:layout_width="match_parent"

@@ -2,6 +2,7 @@ package com.example.recycler_kakaotalk;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -9,30 +10,42 @@ import androidx.fragment.app.FragmentTransaction;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
+import com.example.recycler_kakaotalk.data.MainData;
+import com.example.recycler_kakaotalk.data.Person;
 import com.example.recycler_kakaotalk.navigation.Frag1;
 import com.example.recycler_kakaotalk.navigation.Frag2;
 import com.example.recycler_kakaotalk.navigation.Frag3;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-/*
+import com.google.firebase.database.ValueEventListener;
+
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-*/
+
 import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.settings:
                         setFrag(2);
+                        Log.d("main","엥");
                 }
                 return true;
             }
@@ -106,20 +120,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        /*
-        사진 업로드 구현 중임 ㅜ
         if (requestCode == Frag3.PICK_PROFILE_IMAGE && resultCode == Activity.RESULT_OK) {
+            //사진 업로드 개빡치네
+            /*
             Uri imageURI = data.getData();
             String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("Person").child(uid);
+            DatabaseReference mdatabase = FirebaseDatabase.getInstance().getReference();
+             */
 
         }
-         */
+
+
     }
+
 }
 
 

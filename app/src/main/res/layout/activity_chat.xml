@@ -27,7 +27,7 @@
         <Button
             android:id="@+id/Button_send"
             android:text="SEND"
-            android:layout_width="50dp"
+            android:layout_width="70dp"
             android:layout_height="match_parent"/>
 
     </LinearLayout>
